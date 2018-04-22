@@ -8,15 +8,15 @@
     <mat-form-field>
       <input matInput placeholder="Task Description" value="{{taskDescription}}">
     </mat-form-field>    
-    <mat-chip color="primary">{{currentTimeElapsed}}</mat-chip>
+    <mat-chip color="primary">{{hour}}:{{sixthHourMinute}}</mat-chip>
     <label></label>
     </mat-card-content>
     <div style="width:100%;" *ngIf="running">      
       <mat-progress-bar mode="buffer"></mat-progress-bar>
     </div>
     <mat-card-actions>
-      <button mat-button (click)="startTask()"><mat-icon>play_arrow</mat-icon></button>
-      <button mat-button><mat-icon>stop</mat-icon></button>
+      <button mat-button [disabled]="running" (click)="startTask()"><mat-icon>play_arrow</mat-icon></button>
+      <button mat-button [disabled]="!running" (click)="stopTask()"><mat-icon>stop</mat-icon></button>
     </mat-card-actions>
   </mat-card>
   </div>

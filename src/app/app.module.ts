@@ -5,7 +5,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations'
 
 import { AppComponent } from './app.component';
 import { TimeTrackerComponent } from './time-tracker/time-tracker.component';
-import { DatePipe } from '@angular/common';
+import { DatePipe, CommonModule } from '@angular/common';
 
 
 @NgModule({
@@ -23,7 +23,8 @@ import { DatePipe } from '@angular/common';
     MatInputModule,
     MatChipsModule,
     MatProgressBarModule,
-    DatePipe,
+    CommonModule,
+    
     BrowserAnimationsModule
   ],
   providers: [],
