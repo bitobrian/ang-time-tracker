@@ -5,6 +5,7 @@ import { DatePipe } from '@angular/common';
 import { interval } from 'rxjs/observable/interval';
 import { Subscription } from 'rxjs/Subscription';
 import 'rxjs/add/observable/timer';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-root',
@@ -14,6 +15,7 @@ import 'rxjs/add/observable/timer';
 export class AppComponent {
   title = 'app';
   running = false;
+  message;
   taskDescription ='My Task';
   currentTimeElapsed;
   timeStart;
@@ -24,36 +26,24 @@ export class AppComponent {
   hour=0;
   sixthHourMinute=0;
   active= false;
-  // Create an Observable that will publish a value on an interval
   timer: any;
   subscription: any;
-  // timer: any;
+
+  constructor(public snackBar: MatSnackBar) {}
+
+  openSnackBar(input: string) {
+    this.snackBar.open(input,'', {duration: 2000});
+  }
 
   startTask(): void{
     this.running = true;
+
+    this.openSnackBar(this.taskDescription+ ' Started');
     
     this.seconds = Number(localStorage.getItem(this.taskDescription+'_seconds_data'));
     this.sixthHourMinute = Number(localStorage.getItem(this.taskDescription+'_sixthMinute_data'));
     this.hour = Number(localStorage.getItem(this.taskDescription+'_hour_data'));
-    // this.timeStart = Number(localStorage.getItem(this.taskDescription+'_data'));
-    // console.log('timestart before check: '+this.timeStart);    
-    // localStorage.setItem(this.taskDescription+'_data' , Date.now().toString());
-    // console.log('timeToCompare: '+ this.timeToCompare);
-    // console.log('timeStart: ' + this.timeStart);
-    
-    // var timeDiff = this.timeStart - this.timeToCompare;
-    // console.log('timeDiff: ' + timeDiff);
 
-    // this.currentMinutesElapsed = (timeDiff/1000) / 60;
-
-    // this.currentHoursElapsed = this.currentMinutesElapsed / 60;
-    
-    // this.currentTimeElapsed = timeDiff;
-
-    // var numbers = timer(3000, 1000);
-    // numbers.subscribe(x => console.log(x));
-    
-    // Subscribe to begin publishing values
     this.subscription = this.timer.subscribe(n => {
       this.seconds+= 1;
       console.log(this.seconds==360);
@@ -74,20 +64,27 @@ export class AppComponent {
       localStorage.setItem(this.taskDescription+'_hour_data' , this.hour.toString());
       
     });
-      //disable play button
   }
 
   stopTask(): void {
     this.running = false;
-    //enable play button
-    // Create an Observable that will publish a value on an interval
-    // this.secondsCounter.unsubscribe();
     this.subscription.unsubscribe();
+    this.openSnackBar(this.taskDescription+ ' Stopped');
   }
   
+  resetTaskData(): void {
+    localStorage.setItem(this.taskDescription + '_seconds_data', '');
+    localStorage.setItem(this.taskDescription + '_sixthMinute_data', '');
+    localStorage.setItem(this.taskDescription + '_hour_data', '');
+
+    this.openSnackBar('Data reset!');
+  }
+
+  submitTime(): void {
+    this.openSnackBar('Shit dont work');
+  }
+
   ngOnInit(): void {
-  //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
-  //Add 'implements OnInit' to the class.
   this.timer = Observable.timer(0,1000);
 }
 }

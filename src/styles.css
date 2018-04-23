@@ -4,3 +4,12 @@
 .bg{
     background-color: teal;
 }
+
+.example-card {
+    max-width: 400px;
+} 
+  
+.example-header-image {
+background-image: url('https://media.glassdoor.com/sqls/102/boeing-squarelogo.png');
+background-size: cover;
+}

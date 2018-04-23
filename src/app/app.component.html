@@ -1,22 +1,23 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center; width: 30%;">
-  <mat-card>
+<mat-card class="example-card">
     <mat-card-header>
-      <mat-card-title>Task</mat-card-title>
+      <div mat-card-avatar class="example-header-image"></div>
+      <mat-card-title>{{taskDescription}}</mat-card-title>
+      <mat-card-subtitle>Project 4EATS</mat-card-subtitle>
     </mat-card-header>
+    <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
     <mat-card-content>
-    <mat-form-field>
-      <input matInput placeholder="Task Description" value="{{taskDescription}}">
-    </mat-form-field>    
-    <mat-chip color="primary">{{hour}}:{{sixthHourMinute}}</mat-chip>
-    <label></label>
+      <p>
+        The project that does stuff for stuff.
+      </p>
+      <h1>{{hour}}.{{sixthHourMinute}}.{{seconds}}</h1>
     </mat-card-content>
     <div style="width:100%;" *ngIf="running">      
-      <mat-progress-bar mode="buffer"></mat-progress-bar>
-    </div>
+        <mat-progress-bar mode="buffer"></mat-progress-bar>
+      </div>
     <mat-card-actions>
-      <button mat-button [disabled]="running" (click)="startTask()"><mat-icon>play_arrow</mat-icon></button>
-      <button mat-button [disabled]="!running" (click)="stopTask()"><mat-icon>stop</mat-icon></button>
+      <button mat-button [disabled]="running" (click)="startTask()">START</button>
+      <button mat-button [disabled]="!running" (click)="stopTask()">STOP</button>
+      <button mat-button (click)="submitTime()">SUBMIT TIME</button>
+      <button mat-button (click)="resetTaskData()">RESET</button>
     </mat-card-actions>
   </mat-card>
-  </div>

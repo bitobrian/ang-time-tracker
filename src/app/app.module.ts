@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import {MatButtonModule, MatCheckboxModule, MatCardModule, MatIconModule, MatFormFieldModule, MatInputModule, MatChipsModule, MatProgressBarModule} from '@angular/material';
+import {MatButtonModule, MatCheckboxModule, MatCardModule, MatIconModule, MatFormFieldModule, MatInputModule, MatChipsModule, MatProgressBarModule, MatSnackBarModule} from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations'
 
 import { AppComponent } from './app.component';
@@ -23,6 +23,7 @@ import { DatePipe, CommonModule } from '@angular/common';
     MatInputModule,
     MatChipsModule,
     MatProgressBarModule,
+    MatSnackBarModule,
     CommonModule,
     
     BrowserAnimationsModule
